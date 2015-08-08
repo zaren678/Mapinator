@@ -1,4 +1,5 @@
 var Hapi = require('hapi');
+var scanWifiNetworks = require('./lib/wifiScan');
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -7,10 +8,10 @@ server.route({
     method: 'GET',
     path: '/access-points',
     handler: function (request, reply) {
-        reply([
-            {'name': 'Some Access Point'},
-            {'name': 'Terminus'}
-        ]);
+      scanWifiNetworks()
+        .then(reply)
+        .fail( console.error )
+        .done();
     }
 });
 

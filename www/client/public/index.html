@@ -6,9 +6,13 @@
 <body>
 	<h1>Choose a Wifi Network!</h1>
 
-	<ul class="wifi-selector">
-		<li>Loading...</li>
-	</ul>
+	<select id="wifi-selector" >
+		<option selected disabled hidden value=''></option>
+	</select>
+
+	<input type="password" id="apPassword">
+
+	<button id="submit-button" type="button">Submit</button>
 
 	<script src="/js/site-script.js"></script>
 </body>
