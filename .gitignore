@@ -1,2 +1,12 @@
 node_modules
 .DS_Store
+*.o
+*.Po
+*.a
+Makefile
+xplanet/xplanet-1.3.0/config.h
+xplanet/xplanet-1.3.0/config.log
+xplanet/xplanet-1.3.0/config.status
+xplanet/xplanet-1.3.0/stamp-h1
+xplanet/xplanet-1.3.0/xpDefines.h
+xplanet
