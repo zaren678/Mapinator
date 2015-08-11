@@ -82,8 +82,11 @@ make install
 cd ../..
 }
 
+PREFIX=$(pwd)/build
+
 set OLD_CFLAGS = $CFLAGS
 export CFLAGS=-I$PREFIX/include
+echo $CFLAGS
 
 set OLD_CPPFLAGS = $CPPFLAGS
 export CPPFLAGS=-I$PREFIX/include
@@ -91,12 +94,11 @@ export CPPFLAGS=-I$PREFIX/include
 set OLD_LDFLAGS = $LDFLAGS
 export LDFLAGS=-L$PREFIX/lib
 
-PREFIX=$(pwd)/build
-#build_zlib
-#build_libpng
+build_zlib
+build_libpng
 build_libjpeg
-#build_libfreetype
-#build_xplanet
+build_libfreetype
+build_xplanet
 
 export CFLAGS $OLD_CFLAGS
 export CPPFLAGS $OLD_CPPFLAGS
