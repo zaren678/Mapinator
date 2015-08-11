@@ -57,3 +57,6 @@ xplanet/libpng-1.6.18/.libs/pngstest
 xplanet/libpng-1.6.18/.libs/pngtest
 xplanet/libpng-1.6.18/.libs/pngunknown
 xplanet/libpng-1.6.18/.libs/pngvalid
+xplanet/build
+xplanet/src/freetype-2.6/objs/.libs
+xplanet/src/libpng-1.6.18/.libs
