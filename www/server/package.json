@@ -6,7 +6,8 @@
   "dependencies": {
     "hapi": "^8.8.0",
     "node-wifiscanner": "^0.2.1",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "shelljs": "^0.5.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
