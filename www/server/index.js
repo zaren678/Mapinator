@@ -35,11 +35,19 @@ server.route({
 
         generateXplanetImage( function( success, filePath ) {
           if( success ){
-            reply( filePath );
+            reply( filePath ).header('Cache-control', 'no-store, no-cache, must-revalidate');
           } else {
             reply( "Failed to Generate image" ).code( 500 );
           }
         });
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/img/earth.png',
+    handler: function ( request, reply ) {
+        reply.file( '../client/public/img/earth.png' ).header('Cache-control', 'no-store, no-cache, must-revalidate');
     }
 });
 
