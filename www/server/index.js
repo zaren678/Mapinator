@@ -35,7 +35,7 @@ server.route({
 
         generateXplanetImage( function( success, filePath ) {
           if( success ){
-            reply( filePath ).header('Cache-control', 'no-store, no-cache, must-revalidate');
+            reply( filePath );
           } else {
             reply( "Failed to Generate image" ).code( 500 );
           }
