@@ -26,11 +26,14 @@
     $('#submit-button').click( function(e) {
 
         ap = $('#wifi-selector option:selected').val();
+        theApObject = JSON.parse( ap );
+        $.extend( theApObject, { password: $('#apPassword').val() } );
+
         $.ajax({
-            url: '/access-point',
+            url: '/join-access-point',
             method: 'POST',
             contentType: 'text/plain',
-            data: ap
+            data: JSON.stringify( theApObject )
         })
     });
 
