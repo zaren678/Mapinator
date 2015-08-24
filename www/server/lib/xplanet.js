@@ -3,7 +3,7 @@ var shell = require('shelljs');
 var XPLANET_DEBUG=true;
 
 //This should return a url to an xplanet image
-function generateXplanetImage( callback ){
+function generateXplanetImage( timeout, callback ){
 
   var theXplanetExec = '../../xplanet/build/bin/xplanet';
   var theSourceDataPath = '../../xplanet/sourceData';
@@ -29,7 +29,8 @@ function generateXplanetImage( callback ){
     theCmd += ' -label';
   }
 
-  shell.exec( theCmd , function( code, output ) {
+  //timeout isn't a feature on shelljs right now... hopefully soon
+  shell.exec( theCmd, function( code, output ) {
     if( code == 0 ){
       callback( true, theReturnPath );
     } else {

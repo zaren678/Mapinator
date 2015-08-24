@@ -38,7 +38,7 @@ server.route({
     method: 'GET',
     path: '/planetImage',
     handler: function (request, reply) {
-        generateXplanetImage( function( success, filePath ) {
+        generateXplanetImage( 100, function( success, filePath ) {
           if( success ){
             reply( filePath );
           } else {
