@@ -1,11 +1,15 @@
 var shell = require('shelljs');
+var fs = require('fs');
+var path = require('path');
+
 
 var XPLANET_DEBUG=true;
 
 //This should return a url to an xplanet image
 function generateXplanetImage( timeout, callback ){
 
-  var theXplanetExec = '../../xplanet/build/bin/xplanet';
+  var theXplanetFolder = '../../xplanet/'
+  var theXplanetExec = theXplanetFolder + '/build/bin/xplanet';
   var theSourceDataPath = '../../xplanet/sourceData';
   var theConfFile = '../../xplanet/xplanet.conf';
   var theServerPath = '/img/'
@@ -35,13 +39,47 @@ function generateXplanetImage( timeout, callback ){
   }
 
   //TODO get cloud map every 4 hours
-  //timeout isn't a feature on shelljs right now... hopefully soon
-  shell.exec( theCmd, function( code, output ) {
-    if( code == 0 ){
-      callback( true, theReturnPath );
-    } else {
-      callback( false );
-    }
+  theCloudCmd = theXplanetFolder + 'xplanet_cloud.sh'
+  console.log( "Cloud cmd: " + theCloudCmd )
+
+  //The Shell cmd to generate xplanet
+  var theXplanetFunc = function(){
+    shell.exec( theCmd, function( code, output ) {
+      if( code == 0 ){
+        callback( true, theReturnPath );
+      } else {
+        callback( false );
+      }
+    });
+  }
+
+  var theCloudAndXplanetFunc = function(){
+    shell.exec( theXplanetFolder + 'xplanet_cloud.sh', function( code, output ){
+      theXplanetFunc();
+    } );
+  }
+
+  //make sure settings dir exists
+  var theSettingsFolder = './.settings'
+  var theClouldSettingsFile = theSettingsFolder + '/clouds.jsn'
+  var shouldGetClouds = true
+  fs.stat( theSettingsFolder, function( err, stat ) {
+      if( err != null && err.code == 'ENOENT' ) {
+          console.log( 'Creating settings dir' )
+          fs.mkdirSync( theSettingsFolder )
+      }
+
+      fs.stat( theClouldSettingsFile, function( err, stat ) {
+          if( err == null ) {
+            //read the file... set should get clouds to true if greater than 4 hours since last clouds
+          }
+
+          if( shouldGetClouds ){
+            theCloudAndXplanetFunc();
+          } else {
+            theXplanetFunc();
+          }
+      });
   });
 }
 
