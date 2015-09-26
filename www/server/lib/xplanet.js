@@ -23,12 +23,18 @@ function generateXplanetImage( timeout, callback ){
     + ' -searchdir=' + theSourceDataPath
     + ' -config=' + theConfFile
     + ' -output=' + theOutputFile
+    + ' -body earth'
+    + ' -latitude 0'
+    + ' -longitude -112'
+    + ' -geometry 800x508'
+    + ' -projection rectangular'
     + ' -num_times=1';
 
   if( XPLANET_DEBUG ){
     theCmd += ' -label';
   }
 
+  //TODO get cloud map every 4 hours
   //timeout isn't a feature on shelljs right now... hopefully soon
   shell.exec( theCmd, function( code, output ) {
     if( code == 0 ){
