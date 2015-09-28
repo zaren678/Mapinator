@@ -24,4 +24,9 @@ function joinWifiNetworkMac( ssid, password, callback ){
     });
 }
 
+function joinWifiNetworkUnix( ssid, password, callback ){
+  //TODO
+
+}
+
 module.exports = joinWifiNetwork;

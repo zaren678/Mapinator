@@ -1,9 +1,12 @@
 var shell = require('shelljs');
 var fs = require('fs');
 var path = require('path');
+var moment = require('moment')
 
 
 var XPLANET_DEBUG=true;
+var lastCloudDownloadTime;
+var CLOUD_UPDATE_INTERVAL_HOURS = 4;
 
 //This should return a url to an xplanet image
 function generateXplanetImage( timeout, callback ){
@@ -55,32 +58,30 @@ function generateXplanetImage( timeout, callback ){
 
   var theCloudAndXplanetFunc = function(){
     shell.exec( theXplanetFolder + 'xplanet_cloud.sh', function( code, output ){
+      lastCloudDownloadTime = moment();
       theXplanetFunc();
     } );
   }
 
-  //make sure settings dir exists
-  var theSettingsFolder = './.settings'
-  var theClouldSettingsFile = theSettingsFolder + '/clouds.jsn'
-  var shouldGetClouds = true
-  fs.stat( theSettingsFolder, function( err, stat ) {
-      if( err != null && err.code == 'ENOENT' ) {
-          console.log( 'Creating settings dir' )
-          fs.mkdirSync( theSettingsFolder )
-      }
+  var shouldGetClouds = false
+  if( lastCloudDownloadTime == null ){
+    console.log( "Getting clouds for the first time" )
+    shouldGetClouds = true
+  } else {
+    var theDiff = moment().subtract( lastCloudDownloadTime ).minutes()
+    if( theDiff >= ( CLOUD_UPDATE_INTERVAL_HOURS * 60 ) ){
+      console.log( "Getting clouds because it has been 4 hours since last update" )
+      shouldGetClouds = true
+    } else {
+      console.log( "Not getting clouds because it has only been " + theDiff + " minutes since last update" )
+    }
+  }
 
-      fs.stat( theClouldSettingsFile, function( err, stat ) {
-          if( err == null ) {
-            //read the file... set should get clouds to true if greater than 4 hours since last clouds
-          }
-
-          if( shouldGetClouds ){
-            theCloudAndXplanetFunc();
-          } else {
-            theXplanetFunc();
-          }
-      });
-  });
+  if( shouldGetClouds ){
+    theCloudAndXplanetFunc();
+  } else {
+    theXplanetFunc();
+  }
 }
 
 module.exports = generateXplanetImage;

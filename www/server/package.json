@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "hapi": "^8.8.0",
+    "moment": "^2.10.6",
     "node-wifiscanner": "^0.2.1",
     "q": "^1.4.1",
     "shelljs": "^0.5.3"
