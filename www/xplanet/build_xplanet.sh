@@ -74,7 +74,7 @@ function build_xplanet
       --prefix=$PREFIX \
       --with-png\
       --with-jpeg\
-      --with-freetype\
+      #--with-freetype\
       $ADDITIONAL_CONFIGURE_FLAG
   make clean
   make -j3
@@ -97,7 +97,7 @@ export LDFLAGS=-L$PREFIX/lib
 build_zlib
 build_libpng
 build_libjpeg
-build_libfreetype
+#build_libfreetype
 build_xplanet
 
 export CFLAGS $OLD_CFLAGS
