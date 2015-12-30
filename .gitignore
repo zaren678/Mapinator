@@ -68,3 +68,10 @@ www/xplanet/src/zlib-1.2.8/example
 www/xplanet/src/zlib-1.2.8/examplesh
 www/xplanet/src/zlib-1.2.8/minigzip
 www/xplanet/src/zlib-1.2.8/minigzipsh
+www/xplanet/src/freetype-2.6/CMakeFiles
+www/xplanet/src/freetype-2.6/cmake_install.cmake
+www/xplanet/src/freetype-2.6/CMakeCache.txt
+www/xplanet/src/freetype-2.6/CPackConfig.cmake
+www/xplanet/src/freetype-2.6/CPackSourceConfig.cmake
+www/xplanet/src/freetype-2.6/install_manifest.txt
+www/xplanet/src/freetype-2.6/include/freetype2/ftconfig.h
