@@ -65,6 +65,37 @@ function build_libfreetype
   cd ../..
 }
 
+function build_exif
+{
+  echo ""
+  echo "************************************************"
+  echo "Building exif into folder $PREFIX"
+  cd ./src/libexif-0.6.21/
+  ./configure \
+      --prefix=$PREFIX \
+      --enable-shared=no
+  make clean
+  make -j3
+  make install
+  cd ../..
+}
+
+function build_epeg
+{
+  echo ""
+  echo "************************************************"
+  echo "Building epeg into folder $PREFIX"
+  cd ./src/epeg/
+  export NOCONFIGURE=true
+  ./autogen.sh
+  ./configure \
+      --prefix=$PREFIX
+  make clean
+  make -j3
+  make install
+  cd ../..
+}
+
 function build_xplanet
 {
   echo ""
@@ -98,7 +129,9 @@ build_zlib
 build_libpng
 build_libjpeg
 build_libfreetype
+build_exif
+build_epeg
+
 
 export LIBS=-lfreetype
-
 build_xplanet
