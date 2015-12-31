@@ -85,14 +85,10 @@ function build_xplanet
 
 PREFIX=$(pwd)/build
 
-set OLD_CFLAGS = $CFLAGS
 export CFLAGS="-I$PREFIX/include -I$PREFIX/include/freetype2"
 echo $CFLAGS
 
-set OLD_CPPFLAGS = $CPPFLAGS
 export CPPFLAGS="-I$PREFIX/include -I$PREFIX/include/freetype2"
-
-set OLD_LDFLAGS = $LDFLAGS
 export LDFLAGS=-L$PREFIX/lib
 
 build_zlib
@@ -100,10 +96,6 @@ build_libpng
 build_libjpeg
 build_libfreetype
 
-export LDFLAGS="-L$PREFIX/lib -lfreetype"
+export LIBS=-lfreetype
 
 build_xplanet
-
-export CFLAGS $OLD_CFLAGS
-export CPPFLAGS $OLD_CPPFLAGS
-export LDFLAGS $OLD_LDFLAGS
