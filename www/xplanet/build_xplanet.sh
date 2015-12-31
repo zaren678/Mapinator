@@ -14,7 +14,7 @@ function build_zlib
       --prefix=$PREFIX \
       --static
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
@@ -30,7 +30,7 @@ function build_libpng
       --with-zlib-prefix=$PREFIX \
       --enable-shared=no
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
@@ -45,7 +45,7 @@ function build_libjpeg
       --prefix=$PREFIX \
       --enable-shared=no
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
@@ -60,7 +60,7 @@ function build_libfreetype
   #./configure \
   #    --prefix=$PREFIX
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
@@ -75,7 +75,7 @@ function build_exif
       --prefix=$PREFIX \
       --enable-shared=no
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
@@ -91,7 +91,7 @@ function build_epeg
   ./configure \
       --prefix=$PREFIX
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
@@ -112,7 +112,7 @@ function build_xplanet
       --with-freetype\
       $ADDITIONAL_CONFIGURE_FLAG
   make clean
-  make -j3
+  make -j2
   make install
   cd ../..
 }
