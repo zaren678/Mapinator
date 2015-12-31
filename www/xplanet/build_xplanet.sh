@@ -11,7 +11,8 @@ function build_zlib
   echo "Building zlib into folder $PREFIX"
   cd ./src/zlib-1.2.8/
   ./configure \
-      --prefix=$PREFIX
+      --prefix=$PREFIX \
+      --static
   make clean
   make -j3
   make install
@@ -26,7 +27,8 @@ function build_libpng
   cd ./src/libpng-1.6.18/
   ./configure \
       --prefix=$PREFIX \
-      --with-zlib-prefix=$PREFIX
+      --with-zlib-prefix=$PREFIX \
+      --enable-shared=no
   make clean
   make -j3
   make install
@@ -40,7 +42,8 @@ function build_libjpeg
   echo "Building libjpeg into folder $PREFIX"
   cd ./src/jpeg-9a/
   ./configure \
-      --prefix=$PREFIX
+      --prefix=$PREFIX \
+      --enable-shared=no
   make clean
   make -j3
   make install
