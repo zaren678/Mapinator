@@ -43,7 +43,7 @@ function generateXplanetImage( timeout, callback ){
 
   //The Shell cmd to generate xplanet
   var theXplanetFunc = function(){
-    console.log( "Running xplanet in workind dir: " + shell.pwd() );
+    console.log( "Running xplanet in working dir: " + shell.pwd() );
     console.log( "Xplanet cmd is: " + theCmd );
     shell.exec( theCmd, function( code, output ) {
       if( code == 0 ){
