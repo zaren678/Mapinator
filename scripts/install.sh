@@ -88,18 +88,7 @@ theCmd="rm -rv ${theServerDir};"
 # 2. git clone server
 theCmd="${theCmd}cd /var/www;git clone -b ${theBranch} https://github.com/zaren678/Mapinator.git ${theServerDirName};"
 # 3. make sure node is installed
-theCmd="${theCmd}cd ${theServerDir}/scripts;./install_node.sh;"
-theCmd="${theCmd}npm install forever -g;"
-
-# 4. build xplanet
-#make sure we automake tools
-theCmd="${theCmd}sudo apt-get -y install automake autoconf libtools cmake;"
-theCmd="${theCmd}cd ${theServerDir}/xplanet;./build_xplanet.sh;"
-
-# 5. install server startup in init.d TODO
-# 6. start server (nodemon or node optionally)
-theCmd="${theCmd}cd ${theServerDir}/server;node index.js;"
-
+theCmd="${theCmd}cd ${theServerDir}/scripts;./setup.sh;"
 
 echo "ssh ${url} ${theCmd}"
 ssh $url $theCmd
