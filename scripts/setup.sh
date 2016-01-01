@@ -13,7 +13,7 @@ cd $DIR
 echo `pwd`
 
 # 3. make sure node is installed
-cd $DIR/scripts
+cd $DIR/../scripts
 ./install_node.sh
 
 sudo npm install forever -g
@@ -21,10 +21,10 @@ sudo npm install forever -g
 # 4. build xplanet
 #make sure we automake tools
 sudo apt-get -y install automake autoconf libtools cmake
-cd $DIR/xplanet
+cd $DIR/../xplanet
 ./build_xplanet.sh
 
 # 5. install server startup in init.d TODO
 # 6. start server (nodemon or node optionally)
-cd $DIR/server
+cd $DIR/../server
 node index.js
