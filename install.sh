@@ -77,12 +77,16 @@ url=${@:0}
 
 echo "url: $url"
 
+theServerDirName="Mapinator"
+theServerDir="/var/www/${theServerDirName}"
+theBranch="node_server"
+
 #Now that we've collected the args, do the work
 # 1. delete the www folder if it exists
-theCmd="rm -rv /var/www;"
+theCmd="rm -rv ${theServerDir};"
 
 # 2. git clone server
-theCmd="${theCmd}cd /var;git clone -b node_server https://github.com/zaren678/Mapinator.git www;"
+theCmd="${theCmd}cd /var/www;git clone -b ${theBranch} https://github.com/zaren678/Mapinator.git ${theServerDirName};"
 # 3. make sure node is installed
 theCmd="${theCmd}curl -sLS https://apt.adafruit.com/add | sudo bash;"
 theCmd="${theCmd}sudo apt-get -y install node;"
@@ -90,11 +94,11 @@ theCmd="${theCmd}sudo apt-get -y install node;"
 # 4. build xplanet
 #make sure we automake tools
 theCmd="${theCmd}sudo apt-get -y install automake autoconf libtools cmake;"
-theCmd="${theCmd}cd /var/www/www/xplanet;./build_xplanet.sh;"
+theCmd="${theCmd}cd ${theServerDir}/www/xplanet;./build_xplanet.sh;"
 
 # 5. install server startup in init.d TODO
 # 6. start server (nodemon or node optionally)
-theCmd="${theCmd}cd /var/www/www/server;node index.js;"
+theCmd="${theCmd}cd ${theServerDir}/www/server;node index.js;"
 
 
 echo "ssh ${url} ${theCmd}"
